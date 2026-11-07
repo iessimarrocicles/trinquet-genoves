@@ -40,7 +40,7 @@ export async function crearCompte(email, contrasenya) {
   const { data, error } = await obtenirClient().auth.signUp({
     email,
     password: contrasenya,
-    options: { emailRedirectTo: window.location.origin },
+    options: { emailRedirectTo: window.location.origin + import.meta.env.BASE_URL },
   });
   if (error) return { error: traduir(error) };
   return { necessitaConfirmar: !data.session };
