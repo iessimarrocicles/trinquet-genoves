@@ -1,0 +1,32 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-trinquet-paret font-cos text-trinquet-fosc antialiased; touch-action: manipulation; }
+  button { touch-action: manipulation; user-select: none; }
+}
+
+@layer components {
+  /* Fons que recorda la paret d'un trinquet, amb la línia de la «corda» */
+  .fons-trinquet {
+    background-color: #f5efe3;
+    background-image:
+      linear-gradient(to bottom, transparent calc(38% - 2px), #c8b89a calc(38% - 2px), #c8b89a 38%, transparent 38%),
+      repeating-linear-gradient(90deg, transparent 0 119px, rgba(200, 184, 154, .25) 119px 120px);
+    background-attachment: fixed;
+  }
+  .boto-rodo { @apply flex h-12 w-12 items-center justify-center rounded-full text-xl transition active:scale-90; }
+  .boto-primari { @apply rounded-full bg-blau-600 px-5 py-3 font-bold text-white shadow hover:bg-blau-700 active:scale-95; }
+  .camp { @apply min-h-[48px] rounded-xl border-2 border-slate-200 bg-white px-3 py-2 focus:border-blau-500 focus:outline-none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}
+
+@media print {
+  header, .print\:hidden { display: none !important; }
+  .fixed { position: static !important; background: none !important; }
+}
