@@ -14,7 +14,7 @@ function llegir() {
       tipus: 'error',
       text:
         codi === 'otp_expired'
-          ? 'L’enllaç de confirmació ha caducat o ja s’havia fet servir. Torna a ⚙️ Configuració → ☁️ Compte i dades i prem «Reenviar el correu».'
+          ? 'L’enllaç de confirmació ha caducat o ja s’havia fet servir. Ja no cal confirmar el correu: entra directament des de ⚙️ Configuració → ☁️ Compte i dades.'
           : 'No s’ha pogut confirmar el correu. Torna-ho a provar des de ⚙️ Configuració → ☁️ Compte i dades.',
     };
   }

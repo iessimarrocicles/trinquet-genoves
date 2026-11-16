@@ -13,11 +13,16 @@ Sense configurar res, funciona en **mode local**: les dades es guarden al navega
 
 ### Núvol (Supabase)
 Ja està configurat: el projecte **trinquet-genoves** (regió de París) té les taules i les polítiques RLS de `supabase/schema.sql`, i `.env.local` conté l'adreça i la clau publicable.
-1. A ⚙️ → ☁️ Compte i dades → **Crear compte**, amb el teu correu i una contrasenya.
-2. Confirma el correu que t'envia Supabase i després prem **Entrar**.
-3. L'etiqueta de la capçalera passa a dir «☁️ Al núvol». La primera vegada, l'aula del navegador es copia al núvol.
+1. A ⚙️ → ☁️ Compte i dades → **Crear compte**, amb el teu correu i una contrasenya. Entres directament: la confirmació per correu està desactivada.
+2. L'etiqueta de la capçalera passa a dir «☁️ Al núvol». La primera vegada, l'aula del navegador es copia al núvol.
 
-Perquè l'enllaç de confirmació torne a l'app, a Supabase → Authentication → URL Configuration posa la *Site URL* `http://localhost:5173` (o l'adreça on publiques l'app).
+Configuració a Supabase → Authentication:
+- **URL Configuration**: *Site URL* `https://iessimarrocicles.github.io/trinquet-genoves/`; adreces de retorn permeses: la publicada i `http://localhost:5173`.
+- **Sign In / Providers**: «Confirm email» desactivat. Si algun dia es configura un SMTP propi, es pot tornar a activar i usar la plantilla en valencià de `supabase/plantilles/confirmacio.html`.
+- Els projectes gratuïts es pausen després de 7 dies sense ús: es reactiven amb **Restore project**. Mentrestant, l'app funciona en mode local.
+
+## Publicació
+Cada push a `main` publica l'app a GitHub Pages: https://iessimarrocicles.github.io/trinquet-genoves/
 
 ## Estructura
 ```
