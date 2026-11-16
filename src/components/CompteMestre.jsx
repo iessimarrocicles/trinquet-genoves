@@ -62,6 +62,17 @@ export default function CompteMestre() {
         <button type="button" disabled={ocupat} onClick={() => accio('crear')} className="rounded-full bg-white px-5 py-3 font-bold text-blau-700 ring-2 ring-blau-100 disabled:opacity-50">Crear compte</button>
       </div>
       {missatge && <p className={`rounded-xl p-3 ${missatge.tipus === 'error' ? 'bg-roig-50 text-roig-700' : 'bg-emerald-50 text-emerald-800'}`}>{missatge.text}</p>}
+      <button type="button" disabled={ocupat} className="text-sm font-bold text-blau-700 underline disabled:opacity-50"
+        onClick={async () => {
+          if (!email.includes('@')) { setMissatge({ tipus: 'error', text: 'Escriu primer el teu correu.' }); return; }
+          setOcupat(true);
+          const { reenviarConfirmacio } = await import('../lib/supabase.js');
+          const error = await reenviarConfirmacio(email.trim());
+          setMissatge(error ? { tipus: 'error', text: error } : { tipus: 'ok', text: 'T’hem tornat a enviar el correu de confirmació. Mira també el correu brossa.' });
+          setOcupat(false);
+        }}>
+        No t’ha arribat el correu o l’enllaç ha caducat? Reenviar el correu
+      </button>
       <p className="text-xs text-slate-500">La primera vegada que entres, l'aula que tens en aquest navegador es copiarà al núvol.</p>
     </form>
   );

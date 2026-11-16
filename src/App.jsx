@@ -24,8 +24,9 @@ function BotoBarra({ children, onClick, actiu, color = 'bg-white text-trinquet-f
   );
 }
 
-export default function App() {
+export default function App({ confirmacio }) {
   const { estat, dispatch, carregat, modeStorage } = useClasse();
+  const [avisCompte, setAvisCompte] = useState(confirmacio);
   const [vista, setVista] = useState('mestre');
   const [destinataris, setDestinataris] = useState(null); // { ids, titol }
   const [modeSeleccio, setModeSeleccio] = useState(false);
@@ -119,6 +120,13 @@ export default function App() {
       </header>
 
       <main className="mx-auto max-w-[1600px] space-y-4 px-4 py-4">
+        {avisCompte && (
+          <div role="status" className={`flex items-center gap-3 rounded-3xl p-4 font-bold shadow-sm ring-2 animate-apareix ${avisCompte.tipus === 'ok' ? 'bg-emerald-50 text-emerald-800 ring-emerald-200' : 'bg-roig-50 text-roig-700 ring-roig-200'}`}>
+            <span className="text-3xl" aria-hidden>{avisCompte.tipus === 'ok' ? '✅' : '⚠️'}</span>
+            <p className="flex-1">{avisCompte.text}</p>
+            <button onClick={() => setAvisCompte(null)} className="boto-rodo bg-white/70 hover:bg-white" aria-label="Tanca l’avís">✕</button>
+          </div>
+        )}
         <MarcadorPartida />
 
         {/* ── Botons ràpids ── */}

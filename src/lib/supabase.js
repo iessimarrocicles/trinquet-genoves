@@ -46,6 +46,16 @@ export async function crearCompte(email, contrasenya) {
   return { necessitaConfirmar: !data.session };
 }
 
+/** Torna a enviar el correu de confirmació (per si ha caducat o no ha arribat). */
+export async function reenviarConfirmacio(email) {
+  const { error } = await obtenirClient().auth.resend({
+    type: 'signup',
+    email,
+    options: { emailRedirectTo: window.location.origin + import.meta.env.BASE_URL },
+  });
+  return traduir(error);
+}
+
 export async function eixir() {
   await obtenirClient()?.auth.signOut();
 }
